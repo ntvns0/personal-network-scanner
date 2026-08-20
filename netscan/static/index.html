@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Personal Network Scanner</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-lockup">
+      <div class="brand-mark">NS</div>
+      <div>
+        <h1>Network Scanner</h1>
+        <p>Authorized local assessment</p>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <div class="signal-chip">Personal networks only</div>
+      <div class="status-pill" id="server-status">Ready</div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="scan-panel">
+      <div class="panel-header">
+        <h2>Scan Setup</h2>
+        <button id="suggest-refresh" type="button" class="ghost-button">Refresh Targets</button>
+      </div>
+      <form id="scan-form">
+        <label>
+          Target
+          <div class="target-row">
+            <input id="target" name="target" value="local" autocomplete="off">
+            <button type="button" id="use-local" class="secondary-button">Local</button>
+          </div>
+        </label>
+
+        <label>
+          Ports
+          <input id="ports" name="ports" value="top" autocomplete="off">
+        </label>
+
+        <div class="form-grid">
+          <label>
+            Timeout
+            <input id="timeout" name="timeout" value="0.6" inputmode="decimal">
+          </label>
+          <label>
+            Workers
+            <input id="workers" name="workers" value="128" inputmode="numeric">
+          </label>
+        </div>
+
+        <div class="toggles">
+          <label><input type="checkbox" id="discovery" checked> Discovery</label>
+          <label><input type="checkbox" id="banners" checked> Banners</label>
+          <label><input type="checkbox" id="reverse-dns" checked> Reverse DNS</label>
+          <label><input type="checkbox" id="arp" checked> ARP</label>
+          <label><input type="checkbox" id="allow-public"> Authorized public target</label>
+        </div>
+
+        <button type="submit" class="primary-button">Start Scan</button>
+      </form>
+
+      <div class="target-list">
+        <h3>Suggested Targets</h3>
+        <div id="suggestions" class="suggestions">Loading...</div>
+      </div>
+    </section>
+
+    <section class="dashboard">
+      <section class="command-band">
+        <div>
+          <p class="eyebrow">Operations Surface</p>
+          <h2>Scan, classify, and review the local network.</h2>
+        </div>
+        <div class="band-grid" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </section>
+
+      <div class="progress-panel">
+        <div class="panel-header">
+          <h2>Live Progress</h2>
+          <span id="scan-id" class="muted">No scan running</span>
+        </div>
+        <div class="progress-track"><div id="progress-bar" class="progress-fill"></div></div>
+        <div class="progress-meta">
+          <span id="phase">Idle</span>
+          <span id="progress-count">0/0</span>
+          <span id="progress-rate">0/s</span>
+        </div>
+        <div id="progress-details" class="detail-line"></div>
+      </div>
+
+      <div class="metrics" id="metrics">
+        <div class="metric"><span>Hosts</span><strong>0</strong></div>
+        <div class="metric"><span>Open Ports</span><strong>0</strong></div>
+        <div class="metric"><span>High Risk</span><strong>0</strong></div>
+        <div class="metric"><span>Device Types</span><strong>0</strong></div>
+      </div>
+
+      <div class="visual-grid">
+        <section class="viz-section">
+          <h2>Device Types</h2>
+          <div id="device-chart" class="bar-list empty">Run a scan to see device groups.</div>
+        </section>
+        <section class="viz-section">
+          <h2>Service Groups</h2>
+          <div id="service-chart" class="bar-list empty">Run a scan to see exposed services.</div>
+        </section>
+      </div>
+
+      <section class="hosts-section">
+        <div class="panel-header">
+          <h2>Hosts</h2>
+          <div class="tools">
+            <input id="host-filter" placeholder="Filter hosts or services">
+            <button id="download-json" type="button" class="ghost-button" disabled>JSON</button>
+          </div>
+        </div>
+        <div id="hosts" class="hosts empty">No scan results yet.</div>
+      </section>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
