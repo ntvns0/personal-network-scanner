@@ -2,6 +2,7 @@
   "project_id": "PRJ-018",
   "slug": "personal-network-scanner",
   "title": "Personal Network Scanner",
+  "repo_url": "https://github.com/ntvns0/personal-network-scanner",
   "category": "Network Tools",
   "tech_stack": "Python standard library, CLI, ThreadingHTTPServer, JSON, CSV",
   "summary": "Cautious CLI and local web UI for inventorying devices and open services on owned personal networks.",
